@@ -55,7 +55,7 @@ export default function Navbar() {
             href="/"
             aria-label="BookNook home"
             onClick={closeMenu}
-            className="relative block h-12 w-36 overflow-hidden rounded-lg bg-white sm:w-40"
+            className="relative block h-12 w-36 overflow-hidden rounded-lg bg-white dark:bg-transparent sm:w-40"
           >
             <Image
               src="/image/logo.png"
@@ -63,7 +63,15 @@ export default function Navbar() {
               fill
               priority
               sizes="(max-width: 640px) 144px, 160px"
-              className="object-cover"
+              className="object-contain dark:hidden"
+            />
+            <Image
+              src="/image/dark-theme-logo-removebg-preview.png"
+              alt="BookNook"
+              fill
+              priority
+              sizes="(max-width: 640px) 144px, 160px"
+              className="hidden object-contain dark:block"
             />
           </Link>
 
