@@ -94,27 +94,31 @@ export default function Navbar() {
       >
         All Books
       </Link>
-      <Link
-        href={"/add-books"}
-        onClick={() => isMenuOpen && closeMenu()}
-        className={`${navClass} ${pathname === "/add-books" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
-      >
-        Add Books
-      </Link>
-      <Link
-        href={"/my-books"}
-        onClick={() => isMenuOpen && closeMenu()}
-        className={`${navClass} ${pathname === "/my-books" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
-      >
-        My Books
-      </Link>
-      <Link
-        href={"/my-borrows"}
-        onClick={() => isMenuOpen && closeMenu()}
-        className={`${navClass} ${pathname === "/my-borrows" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
-      >
-        My Borrows
-      </Link>
+      {user && (
+        <>
+          <Link
+            href={"/add-books"}
+            onClick={() => isMenuOpen && closeMenu()}
+            className={`${navClass} ${pathname === "/add-books" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
+          >
+            Add Books
+          </Link>
+          <Link
+            href={"/my-books"}
+            onClick={() => isMenuOpen && closeMenu()}
+            className={`${navClass} ${pathname === "/my-books" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
+          >
+            My Books
+          </Link>
+          <Link
+            href={"/my-borrows"}
+            onClick={() => isMenuOpen && closeMenu()}
+            className={`${navClass} ${pathname === "/my-borrows" ? "border-b-2 border-(--color-primary) text-blue-700 " : "text-slate-600"}`}
+          >
+            My Borrows
+          </Link>
+        </>
+      )}
     </>
   );
 
