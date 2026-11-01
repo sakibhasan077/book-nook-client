@@ -222,6 +222,32 @@ export default function Navbar() {
                 <Moon className="size-5" aria-hidden="true" />
               )}
             </button>
+            {user && (
+              <>
+                <Popover>
+                  <PopoverTrigger
+                    nativeButton={false}
+                    render={
+                      <Avatar>
+                        <AvatarImage src={user.image || ""} alt={user.name} />
+                        <AvatarFallback>{user.name[0]}</AvatarFallback>
+                      </Avatar>
+                    }
+                  />
+                  <PopoverContent align="start">
+                    <PopoverHeader>
+                      <PopoverTitle>{user.name}</PopoverTitle>
+                      <PopoverDescription>{user.email}</PopoverDescription>
+                      <Separator />
+                    </PopoverHeader>
+                    <Button variant={"destructive"} onClick={handleSighOut}>
+                      <LogOut size={20}></LogOut>
+                      Sign Out
+                    </Button>
+                  </PopoverContent>
+                </Popover>
+              </>
+            )}
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
