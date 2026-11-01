@@ -427,7 +427,7 @@ export default function SignUpPage() {
             href="/login"
             className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
-            Sign in
+            Login
           </Link>
         </p>
       </section>
