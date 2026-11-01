@@ -44,17 +44,17 @@ export default function Footer() {
               className="mt-6 flex items-center gap-3"
               aria-label="Social links"
             >
-              <Link href={"https://www.facebook.com/sakibhasan077"}>
+              <Link href={"https://www.facebook.com/sakibhasan077"} target = {"_blank"}>
                 <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
                   <FaFacebookF className="size-5" aria-hidden="true" />
                 </span>
               </Link>
-              <Link href={"https://github.com/sakibhasan077"}>
+              <Link href={"https://github.com/sakibhasan077"} target = {"_blank"}>
                 <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
                   <FaGithub className="size-5" aria-hidden="true" />
                 </span>
               </Link>
-              <Link href={"https://discord.com/users/1517404827343388828"}>
+              <Link href={"https://discord.com/users/1517404827343388828"} target = {"_blank"}>
                 <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
                   <FaDiscord className="size-5" aria-hidden="true" />
                 </span>
@@ -158,17 +158,17 @@ export default function Footer() {
               <li>
                 <Link
                   href="mailto:sakibhasanmd077@gamil.com"
-                  className="flex items-center gap-3 text-sm text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 sm:text-base"
+                  className="flex items-center gap-3 lg:gap-2 xl:gap-3 text-xs text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 sm:text-base"
                 >
                   <span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600 dark:border-blue-400/15 dark:bg-blue-400/10 dark:text-blue-400">
-                    <Mail className="size-5" aria-hidden="true" />
+                    <Mail className="size-4" aria-hidden="true" />
                   </span>
-                  <span>sakibhasanmd077@gamil.com</span>
+                  <span className="lg:text-sm xl:text-base">sakibhasanmd077@gamil.com</span>
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300 sm:text-base">
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600 dark:border-blue-400/15 dark:bg-blue-400/10 dark:text-blue-400">
-                  <MapPin className="size-5" aria-hidden="true" />
+                  <MapPin className="size-4" aria-hidden="true" />
                 </span>
                 <span>Bangladesh</span>
               </li>
