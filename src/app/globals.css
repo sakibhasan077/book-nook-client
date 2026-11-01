@@ -1,8 +1,98 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 @custom-variant dark (&:is(.dark *));
+
+.book-banner {
+  --swiper-pagination-color: #2563eb;
+  --swiper-pagination-bullet-inactive-color: #94a3b8;
+  --swiper-pagination-bullet-inactive-opacity: 0.6;
+  --swiper-navigation-color: #2563eb;
+  --swiper-navigation-size: 1.25rem;
+}
+
+.book-banner .swiper-pagination {
+  bottom: 1.5rem !important;
+}
+
+.book-banner .swiper-pagination-bullet {
+  height: 0.6rem;
+  width: 0.6rem;
+  transition: width 180ms ease;
+}
+
+.book-banner .swiper-pagination-bullet-active {
+  width: 1.75rem;
+  border-radius: 9999px;
+}
+
+.book-banner .swiper-button-prev,
+.book-banner .swiper-button-next {
+  top: 50% !important;
+  z-index: 20;
+  width: 3rem !important;
+  height: 3rem !important;
+  margin-top: 0 !important;
+  border: 1px solid rgb(226 232 240 / 0.8);
+  border-radius: 9999px;
+  background-color: rgb(255 255 255 / 0.8);
+  transform: translateY(-50%);
+}
+
+.book-banner .swiper-button-prev {
+  left: 1rem !important;
+}
+
+.book-banner .swiper-button-next {
+  right: 1rem !important;
+}
+
+.book-banner .swiper-button-prev::after,
+.book-banner .swiper-button-next::after {
+  content: none;
+}
+
+.book-banner .swiper-navigation-icon {
+  width: 0.75rem !important;
+  height: 1.25rem !important;
+  fill: currentColor;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.book-banner .swiper-button-prev:hover .swiper-navigation-icon {
+  transform: translateX(-2px) rotate(180deg);
+}
+
+.book-banner .swiper-button-next:hover .swiper-navigation-icon {
+  transform: translateX(2px);
+}
+
+.dark .book-banner .swiper-button-prev,
+.dark .book-banner .swiper-button-next {
+  border-color: rgb(148 163 184 / 0.2);
+  background-color: rgb(15 23 42 / 0.8);
+}
+
+@media (max-width: 639px) {
+  .book-banner .swiper-button-prev,
+  .book-banner .swiper-button-next {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .book-banner .swiper-button-prev,
+  .book-banner .swiper-button-next {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
