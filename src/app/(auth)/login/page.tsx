@@ -12,7 +12,6 @@ import { useState } from "react";
 import { signIn } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
-import { redirect } from "next/navigation";
 
 // types
 type FormValues = {
@@ -105,22 +104,21 @@ export default function LoginPage() {
       {
         email: data.email,
         password: data.password,
+        callbackURL: "/",
 
       },
       {
         onRequest: () => {
           toast.loading("Signing in...", { id: "signin" });
         },
+        onSuccess: () => {
+          toast.success("Sign in successful!",{id: "signin"});
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message || "Something went wrong",{id:"signin"});
+        },
       }
     );
-    if(resData){
-      toast.success("Login successful!");
-      redirect("/")
-    }
-    if(error){
-      toast.error(error.message || "Something went wrong")
-    }
-    form.reset();
   };
 
   // for google sign in

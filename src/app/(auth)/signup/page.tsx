@@ -110,7 +110,7 @@ export default function SignUpPage() {
   };
 
   // for form submission
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // for form validation
     setSubmitted(true);
@@ -122,9 +122,11 @@ export default function SignUpPage() {
     // for get data from form
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries()) as unknown as FormValues;
+    const data = Object.fromEntries(
+      formData.entries(),
+    ) as unknown as FormValues;
 
-    const {data:resData, error} = await signUp.email(
+    const { data: resData, error } = await signUp.email(
       {
         name: data.name,
         email: data.email,
@@ -135,16 +137,15 @@ export default function SignUpPage() {
         onRequest: () => {
           toast.loading("Signing up...", { id: "signup" });
         },
-      }
+        onSuccess: () => {
+          toast.success("Sign up successful!",{id: "signup"});
+          redirect("/");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message || "Something went wrong",{id:"signup"});
+        },
+      },
     );
-    if(resData){
-      toast.success("Sign up successful!");
-      redirect("/")
-    }
-    if(error){
-      toast.error(error.message || "Something went wrong")
-    }
-    form.reset();
   };
 
   // for google sign in
@@ -156,7 +157,7 @@ export default function SignUpPage() {
           callbackURL: "/",
         },
         {
-          onRequest:()=>{
+          onRequest: () => {
             toast.loading("Signing in with Google...");
           },
           onSuccess: () => {
@@ -230,7 +231,7 @@ export default function SignUpPage() {
                   "flex h-11 items-center gap-3 rounded-lg border bg-white px-3 text-slate-400 transition dark:bg-slate-950",
                   getError("name")
                     ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100 dark:border-red-500/80 dark:focus-within:ring-red-950/40"
-                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40"
+                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40",
                 )}
               >
                 <UserRound aria-hidden="true" className="size-4 shrink-0" />
@@ -266,7 +267,7 @@ export default function SignUpPage() {
                   "flex h-11 items-center gap-3 rounded-lg border bg-white px-3 text-slate-400 transition dark:bg-slate-950",
                   getError("email")
                     ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100 dark:border-red-500/80 dark:focus-within:ring-red-950/40"
-                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40"
+                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40",
                 )}
               >
                 <Mail aria-hidden="true" className="size-4 shrink-0" />
@@ -302,7 +303,7 @@ export default function SignUpPage() {
                   "flex h-11 items-center gap-3 rounded-lg border bg-white px-3 text-slate-400 transition dark:bg-slate-950",
                   getError("password")
                     ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100 dark:border-red-500/80 dark:focus-within:ring-red-950/40"
-                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40"
+                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40",
                 )}
               >
                 <LockKeyhole aria-hidden="true" className="size-4 shrink-0" />
@@ -350,7 +351,7 @@ export default function SignUpPage() {
                   "flex h-11 items-center gap-3 rounded-lg border bg-white px-3 text-slate-400 transition dark:bg-slate-950",
                   getError("confirmPassword")
                     ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100 dark:border-red-500/80 dark:focus-within:ring-red-950/40"
-                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40"
+                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40",
                 )}
               >
                 <LockKeyhole aria-hidden="true" className="size-4 shrink-0" />
