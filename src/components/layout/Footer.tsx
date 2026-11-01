@@ -8,6 +8,7 @@ import {
   MapPin,
   UsersRound,
 } from "lucide-react";
+import { FaDiscord, FaFacebookF, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -15,7 +16,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 pb-8 pt-12 sm:px-8 sm:pt-14 lg:px-10 lg:pt-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-12 lg:grid-cols-4 lg:gap-10">
           <section aria-labelledby="footer-brand">
-            <div className="relative mb-5 h-[72px] w-[190px]">
+            <div className="relative mb-5 h-18 w-47.5">
               <Image
                 src="/image/logo.png"
                 alt="BookNook"
@@ -39,16 +40,25 @@ export default function Footer() {
               favorite books.
             </p>
 
-            <div className="mt-6 flex items-center gap-3" aria-label="Social links">
-              <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
-                <UsersRound className="size-5" aria-hidden="true" />
-              </span>
-              <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
-                <Camera className="size-5" aria-hidden="true" />
-              </span>
-              <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
-                <Code2 className="size-5" aria-hidden="true" />
-              </span>
+            <div
+              className="mt-6 flex items-center gap-3"
+              aria-label="Social links"
+            >
+              <Link href={"https://www.facebook.com/sakibhasan077"}>
+                <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
+                  <FaFacebookF className="size-5" aria-hidden="true" />
+                </span>
+              </Link>
+              <Link href={"https://github.com/sakibhasan077"}>
+                <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
+                  <FaGithub className="size-5" aria-hidden="true" />
+                </span>
+              </Link>
+              <Link href={"https://discord.com/users/1517404827343388828"}>
+                <span className="flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-600 dark:border-slate-700 dark:bg-slate-900/60 dark:text-blue-400">
+                  <FaDiscord className="size-5" aria-hidden="true" />
+                </span>
+              </Link>
             </div>
           </section>
 

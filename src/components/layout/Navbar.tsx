@@ -63,7 +63,7 @@ export default function Navbar() {
               fill
               priority
               sizes="(max-width: 640px) 144px, 160px"
-              className="object-contain dark:hidden"
+              className="object-cover dark:hidden"
             />
             <Image
               src="/image/dark-theme-logo-removebg-preview.png"
@@ -71,7 +71,7 @@ export default function Navbar() {
               fill
               priority
               sizes="(max-width: 640px) 144px, 160px"
-              className="hidden object-contain dark:block"
+              className="hidden object-cover dark:block"
             />
           </Link>
 
