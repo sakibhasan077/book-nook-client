@@ -3,6 +3,7 @@ import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { IBook } from "@/types/BookCartType";
 import { headers } from "next/headers";
+import { EditBookDetails } from "../_components/EditBook";
 
 const MyBooksPage = async () => {
   const session = await auth.api.getSession({
@@ -80,14 +81,7 @@ const MyBooksPage = async () => {
               </div>
 
               <div className="flex shrink-0 items-center justify-end gap-2 border-t border-slate-100 pt-3 dark:border-slate-800 sm:border-l sm:border-t-0 sm:pl-3 sm:pt-0">
-                <button
-                  type="button"
-                  aria-label={`Edit ${book.title}`}
-                  className="inline-flex h-9 items-center gap-2 rounded-full px-3 text-xs font-medium border border-slate-100 dark:border-slate-800 shadow-sm transition hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                  <Pencil className="size-3.5" aria-hidden="true" />
-                  Edit
-                </button>
+                <EditBookDetails book = {book}></EditBookDetails>
                 <button
                   type="button"
                   aria-label={`Delete ${book.title}`}
