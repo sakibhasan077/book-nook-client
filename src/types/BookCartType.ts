@@ -7,4 +7,5 @@ export interface IBook {
   description: string;
   userEmail: string;
   userName: string;
+  totalCopy: string;
 }

@@ -99,6 +99,21 @@ export default function AddBookPage() {
           </div>
 
           <div>
+            <label className={labelClass} htmlFor="total-copies">
+              Total Copies
+            </label>
+            <input
+              id="total-copies"
+              name="totalCopy"
+              type="number"
+              required
+              maxLength={20}
+              placeholder="0"
+              className={inputClass}
+            />
+          </div>
+
+          <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="book-image-url">
               Book Image URL
             </label>
