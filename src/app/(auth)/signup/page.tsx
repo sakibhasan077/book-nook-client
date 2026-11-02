@@ -45,11 +45,13 @@ const validate = (values: FormValues): FormError => {
   // Password Validate
   if (!values.password) {
     errors.password = "Password is required";
-  } else if (values.password.length < 8) {
+  } else if (values.password.length < 6) {
     errors.password = "Password must be at least 8 characters";
   } else if (!/[A-Z]/.test(values.password)) {
     errors.password = "Password must contain an uppercase letter";
-  } else if (!/[0-9]/.test(values.password)) {
+  }else if (!/[a-z]/.test(values.password)) {
+    errors.password = "Password must contain an uppercase letter";
+  }else if (!/[0-9]/.test(values.password)) {
     errors.password = "Password must contain a number";
   }
 
@@ -139,7 +141,7 @@ export default function SignUpPage() {
         },
         onSuccess: () => {
           toast.success("Sign up successful!",{id: "signup"});
-          redirect("/");
+          redirect("/login");
         },
         onError: (ctx) => {
           toast.error(ctx.error.message || "Something went wrong",{id:"signup"});
