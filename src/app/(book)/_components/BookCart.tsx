@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const BookCart = ({ bookData }: { bookData: IBook }) => {
   return (
-    <article className="rounded-xl border border-slate-200/80 bg-white p-1 shadow-[0_2px_8px_rgba(15,23,42,0.07)] dark:border-slate-800 dark:bg-slate-900">
+    <article className="rounded-xl border border-slate-200/80 bg-white p-1 shadow-[0_2px_8px_rgba(15,23,42,0.07)] transition-colors dark:border-slate-800 dark:bg-slate-950">
       <div className="relative aspect-[1.24] overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
         <Image
           src={bookData.imageUrl}
@@ -33,13 +33,11 @@ const BookCart = ({ bookData }: { bookData: IBook }) => {
           <span>{bookData.category}</span>
         </div>
 
-        <Link href={`/books/${bookData._id}`}>
-          <button
-            type="button"
-            className="cursor-pointer mt-4 w-full rounded-md border border-[#0062FB] bg-transparent px-3 py-2 text-xs font-semibold text-[#0062FB] transition-colors hover:bg-slate-50 dark:border-[#0062FB ] dark:text-[#0062FB] dark:hover:bg-[#004DE5]"
-          >
-            View Details
-          </button>
+        <Link
+          href={`/books/${bookData._id}`}
+          className="mt-4 block w-full rounded-md border border-[#0062FB] bg-transparent px-3 py-2 text-center text-xs font-semibold text-[#0062FB] transition-colors hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-950/60 dark:focus-visible:outline-blue-400"
+        >
+          View Details
         </Link>
       </div>
     </article>

@@ -12,29 +12,29 @@ const NewArrival = async () => {
   const books: IBook[] = await res.json();
 
   return (
-    <section className="bg-[#faf8f4] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <section className="bg-[#faf8f4] px-4 py-12 transition-colors dark:bg-slate-900 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <header className="mb-7 text-center">
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#315d84]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#315d84] dark:text-blue-300">
             <Sparkles aria-hidden="true" className="size-3.5" />
             Fresh stories, just in
             <Sparkles aria-hidden="true" className="size-3.5" />
           </p>
-          <h2 className="mt-1 font-serif text-4xl font-bold tracking-tight text-[#18304a] sm:text-5xl">
+          <h2 className="mt-1 font-serif text-4xl font-bold tracking-tight text-[#18304a] dark:text-slate-100 sm:text-5xl">
             New Arrivals
           </h2>
           <BookOpen
             aria-hidden="true"
-            className="mx-auto mt-2 size-5 text-[#315d84]"
+            className="mx-auto mt-2 size-5 text-[#315d84] dark:text-blue-300"
             strokeWidth={2}
           />
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Discover the latest books handpicked for you.
           </p>
         </header>
 
         {books.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
+          <div className="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center dark:border-slate-700 dark:bg-slate-950">
             <p className="font-medium text-slate-700 dark:text-slate-200">
               No books available yet
             </p>
@@ -53,7 +53,7 @@ const NewArrival = async () => {
         <div className="mt-5 flex justify-center">
           <Link
             href="/books"
-            className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:bg-blue-500 dark:hover:bg-blue-400"
           >
             <Layers aria-hidden="true" className="size-4" />
             See All Books

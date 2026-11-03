@@ -33,7 +33,7 @@ export default function Banner() {
   return (
     <section
       aria-label="Featured books"
-      className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
+      className="mx-auto max-w-7xl bg-[#faf8f4] px-4 py-8 transition-colors dark:bg-slate-950 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
     >
       <Swiper
         modules={[Navigation, Pagination]}
@@ -46,7 +46,7 @@ export default function Banner() {
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.title} className="h-auto">
             <div
-              className="relative isolate flex min-h-[390px] overflow-hidden rounded-3xl bg-slate-950 px-7 pb-16 pt-9 shadow-lg sm:min-h-[420px] sm:px-12 sm:pb-20 sm:pt-12 lg:min-h-[460px] lg:px-16"
+              className="relative isolate flex min-h-[390px] overflow-hidden rounded-3xl bg-slate-950 px-7 pb-16 pt-9 shadow-lg ring-1 ring-slate-900/5 dark:ring-white/10 sm:min-h-[420px] sm:px-12 sm:pb-20 sm:pt-12 lg:min-h-[460px] lg:px-16"
             >
               <Image
                 src={slide.image}
