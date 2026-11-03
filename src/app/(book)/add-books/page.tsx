@@ -15,14 +15,25 @@ export default function AddBookPage() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData.entries());
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`,{
+    const formData = new FormData(form);
+    const totalCopy = Number(formData.get("totalCopy"));
+
+    if (!Number.isInteger(totalCopy) || totalCopy < 0) {
+      toast.error("Total copies must be a valid non-negative number");
+      return;
+    }
+
+    const data = {
+      ...Object.fromEntries(formData.entries()),
+      totalCopy,
+    };
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     if(res.ok){
       toast.success("Book added successfully!")

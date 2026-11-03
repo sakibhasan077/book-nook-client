@@ -35,7 +35,18 @@ export function EditBookDetails({ book }: { book: IBook }) {
   const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const totalCopy = Number(formData.get("totalCopy"));
+
+    if (!Number.isInteger(totalCopy) || totalCopy < 0) {
+      toast.error("Total copies must be a valid non-negative number");
+      return;
+    }
+
+    const data = {
+      ...Object.fromEntries(formData.entries()),
+      totalCopy,
+    };
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
       {

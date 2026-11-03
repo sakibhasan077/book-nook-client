@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { IBook } from "@/types/BookCartType";
+import { ConfirmBorrowDialog } from "../../_components/ConfirmBorrowDialog";
 
 const BookDetails = async ({
   params,
@@ -97,14 +98,7 @@ const BookDetails = async ({
               </div>
             </div>
 
-            <button
-              type="button"
-              disabled={!hasCopies}
-              className="mt-4 flex min-h-14 w-full items-center justify-center gap-3 rounded-lg bg-[#123f72] px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-[#0e345f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#123f72] disabled:cursor-not-allowed disabled:bg-slate-400 dark:disabled:bg-slate-700"
-            >
-              <BookOpen className="size-5" aria-hidden="true" />
-              Borrow This Book
-            </button>
+            <ConfirmBorrowDialog hasCopies= {hasCopies}  book = {book} ></ConfirmBorrowDialog>
 
             <p
               className={`mt-4 flex items-center gap-2 text-sm font-medium ${
