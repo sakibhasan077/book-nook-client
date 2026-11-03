@@ -4,6 +4,7 @@ import type { FormEvent } from "react";
 import { LockKeyhole, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import { useSession } from "@/lib/auth-client";
 
 const categories = ["Fiction", "Non-fiction" , "Fantasy", "Science", "History", "Kids","Mystery", "Others"];
 const inputClass =
@@ -12,6 +13,8 @@ const labelClass =
   "mb-1.5 block text-xs font-medium text-slate-800 dark:text-slate-200";
 
 export default function AddBookPage() {
+  const {data:session} = useSession();
+  const user = session?.user;
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -163,7 +166,7 @@ export default function AddBookPage() {
               <input
                 id="user-name"
                 name="userName"
-                value="Md. Sakib Hasan"
+                value={user ? user?.name : "Loading..."}
                 readOnly
                 className={`${inputClass} bg-slate-100 pl-9 dark:bg-slate-800`}
               />
@@ -180,7 +183,7 @@ export default function AddBookPage() {
                 id="user-email"
                 type="email"
                 name="userEmail"
-                value="sakibhasanmd077@gmail.com"
+                value={user ? user?.email : "Loading..."}
                 readOnly
                 className={`${inputClass} bg-slate-100 pl-9 dark:bg-slate-800`}
               />
