@@ -4,6 +4,7 @@ import {
   BookOpen,
   Eye,
   EyeClosed,
+  Image as ImageIcon,
   Leaf,
   LockKeyhole,
   Mail,
@@ -19,6 +20,7 @@ import { redirect } from "next/navigation";
 type FormValues = {
   name: string;
   email: string;
+  imageUrl: string;
   password: string;
   confirmPassword: string;
 };
@@ -40,6 +42,17 @@ const validate = (values: FormValues): FormError => {
     errors.email = "Email is Required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Email is invalid";
+  }
+
+  if (values.imageUrl.trim()) {
+    try {
+      const imageUrl = new URL(values.imageUrl);
+      if (imageUrl.protocol !== "http:" && imageUrl.protocol !== "https:") {
+        errors.imageUrl = "Profile image URL must use HTTP or HTTPS";
+      }
+    } catch {
+      errors.imageUrl = "Profile image URL is invalid";
+    }
   }
 
   // Password Validate
@@ -72,6 +85,7 @@ export default function SignUpPage() {
   const [values, setValues] = useState<FormValues>({
     name: "",
     email: "",
+    imageUrl: "",
     password: "",
     confirmPassword: "",
   });
@@ -132,8 +146,8 @@ export default function SignUpPage() {
       {
         name: data.name,
         email: data.email,
+        image: data.imageUrl || undefined,
         password: data.password,
-
       },
       {
         onRequest: () => {
@@ -288,6 +302,43 @@ export default function SignUpPage() {
               {getError("email") && (
                 <p className="mt-1.5 text-xs text-red-500 dark:text-red-400">
                   {getError("email")}
+                </p>
+              )}
+            </div>
+            {/* Profile image URL */}
+            <div>
+              <label
+                className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200"
+                htmlFor="profile-image-url"
+              >
+                Profile Image URL{" "}
+                <span className="font-normal text-slate-500">(optional)</span>
+              </label>
+              <div
+                className={cn(
+                  "flex h-11 items-center gap-3 rounded-lg border bg-white px-3 text-slate-400 transition dark:bg-slate-950",
+                  getError("imageUrl")
+                    ? "border-red-500 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-100 dark:border-red-500/80 dark:focus-within:ring-red-950/40"
+                    : "border-slate-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 dark:border-slate-700 dark:focus-within:ring-blue-900/40",
+                )}
+              >
+                <ImageIcon aria-hidden="true" className="size-4 shrink-0" />
+                <input
+                  id="profile-image-url"
+                  name="imageUrl"
+                  type="url"
+                  autoComplete="url"
+                  value={values.imageUrl}
+                  onChange={(e) => handleChange("imageUrl", e.target.value)}
+                  onBlur={() => handleBlur("imageUrl")}
+                  placeholder="https://example.com/profile.jpg"
+                  aria-invalid={Boolean(getError("imageUrl"))}
+                  className="h-full min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
+                />
+              </div>
+              {getError("imageUrl") && (
+                <p className="mt-1.5 text-xs text-red-500 dark:text-red-400">
+                  {getError("imageUrl")}
                 </p>
               )}
             </div>
