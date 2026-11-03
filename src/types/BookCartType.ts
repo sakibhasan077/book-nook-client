@@ -9,3 +9,14 @@ export interface IBook {
   userName: string;
   totalCopy: string;
 }
+
+export interface IBorrow {
+  _id: string;
+  bookId: string;
+  bookTitle: string;
+  bookImage: string;
+  bookAuthor?: string;
+  userEmail: string;
+  borrowDate: string;
+  returnDate: string;
+}
