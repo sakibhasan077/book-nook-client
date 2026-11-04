@@ -29,6 +29,7 @@ export default function AddBookPage() {
     const data = {
       ...Object.fromEntries(formData.entries()),
       totalCopy,
+      createdAt: new Date().toISOString(),
     };
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
