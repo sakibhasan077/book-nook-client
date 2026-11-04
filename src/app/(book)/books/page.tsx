@@ -1,9 +1,11 @@
 import { IBook } from "@/types/BookCartType";
-import BookCart from "../_components/BookCart";
 import { notFound } from "next/navigation";
+import BookCart from "../_components/BookCart";
 
 const AllBooksPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     notFound();
   }
