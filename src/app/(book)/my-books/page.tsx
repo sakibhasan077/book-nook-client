@@ -5,6 +5,7 @@ import { IBook } from "@/types/BookCartType";
 import { headers } from "next/headers";
 import { EditBookDetails } from "../_components/EditBook";
 import { DeleteDialog } from "../_components/DeleteBook";
+import { notFound } from "next/navigation";
 
 const MyBooksPage = async () => {
   const session = await auth.api.getSession({
@@ -14,6 +15,10 @@ const MyBooksPage = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/my-books/${user?.email}`,
   );
+  if (!res.ok) {
+    notFound();
+  }
+
   const resData: IBook[] = await res.json();
 
   return (

@@ -3,6 +3,7 @@ import { IBorrow } from "@/types/BookCartType";
 import { headers } from "next/headers";
 import Image from "next/image";
 import { BookOpen } from "lucide-react";
+import { notFound } from "next/navigation";
 import ReturnBookButton from "../_components/ReturnBookButton";
 
 const formatDate = (value: string) => {
@@ -35,7 +36,7 @@ const MyBorrowsPage = async () => {
   );
 
   if (!res.ok) {
-    throw new Error(`Failed to load borrowed books (${res.status}).`);
+    notFound();
   }
 
   const resData: IBorrow[] = await res.json();

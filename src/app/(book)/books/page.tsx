@@ -1,8 +1,13 @@
 import { IBook } from "@/types/BookCartType";
 import BookCart from "../_components/BookCart";
+import { notFound } from "next/navigation";
 
 const AllBooksPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`);
+  if (!res.ok) {
+    notFound();
+  }
+
   const resData: IBook[] = await res.json();
   return (
     <section className="min-h-full bg-[#f7f6f2] px-4 py-8 dark:bg-slate-950 sm:px-6 lg:px-8">

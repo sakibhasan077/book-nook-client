@@ -15,12 +15,8 @@ const BookDetails = async ({
     `${process.env.NEXT_PUBLIC_API_URL}/books/${bookId}`,
   );
 
-  if (response.status === 404) {
-    notFound();
-  }
-
   if (!response.ok) {
-    throw new Error(`Failed to load book details: ${response.status}`);
+    notFound();
   }
 
   const book: IBook = await response.json();
@@ -98,7 +94,10 @@ const BookDetails = async ({
               </div>
             </div>
 
-            <ConfirmBorrowDialog hasCopies= {hasCopies}  book = {book} ></ConfirmBorrowDialog>
+            <ConfirmBorrowDialog
+              hasCopies={hasCopies}
+              book={book}
+            ></ConfirmBorrowDialog>
 
             <p
               className={`mt-4 flex items-center gap-2 text-sm font-medium ${
