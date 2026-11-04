@@ -8,9 +8,9 @@ BookNook allows readers to explore a shared book collection, contribute books, b
 
 ## 🌐 Live Application
 
-- **Live Website:** [Add your deployed frontend URL](#)
-- **Backend API:** [Add your deployed backend URL](#)
-- **Source Code:** [GitHub Repository](https://github.com/sakibhasan077)
+- **Live Website:** https://book-nook077.vercel.app
+- **Backend API:** https://book-nook-server-two.vercel.app
+- **Source Code:** https://github.com/sakibhasan077
 
 ---
 
