@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { IBook } from "@/types/BookCartType";
 import { ConfirmBorrowDialog } from "../../_components/ConfirmBorrowDialog";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const BookDetails = async ({
   params,
@@ -11,8 +12,15 @@ const BookDetails = async ({
   params: Promise<{ bookId: string }>;
 }) => {
   const { bookId } = await params;
+
+  const token = await getTokenFromServer();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/books/${bookId}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/books/${bookId}`,{
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
+
+    }
   );
 
   if (!response.ok) {

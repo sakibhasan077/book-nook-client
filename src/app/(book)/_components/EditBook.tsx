@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FieldGroup } from "@/components/ui/field";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBook } from "@/types/BookCartType";
 import { Pencil } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -46,6 +47,7 @@ export function EditBookDetails({ book }: { book: IBook }) {
       ...Object.fromEntries(formData.entries()),
       totalCopy,
     };
+    const token = await getTokenFromClient();
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,
@@ -53,6 +55,7 @@ export function EditBookDetails({ book }: { book: IBook }) {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`
         },
         body: JSON.stringify(data),
       },

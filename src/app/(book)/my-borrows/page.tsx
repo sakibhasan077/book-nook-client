@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BookOpen } from "lucide-react";
 import { notFound } from "next/navigation";
 import ReturnBookButton from "../_components/ReturnBookButton";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const formatDate = (value: string) => {
   const date = new Date(value);
@@ -30,9 +31,13 @@ const MyBorrowsPage = async () => {
   if (!user?.email) {
     throw new Error("You must be signed in to view your borrowed books.");
   }
-
+  const token = await getTokenFromServer()
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/my-borrows/${encodeURIComponent(user.email)}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/my-borrows/${encodeURIComponent(user.email)}`,{
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
   );
 
   if (!res.ok) {

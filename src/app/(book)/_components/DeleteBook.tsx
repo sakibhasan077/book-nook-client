@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBook } from "@/types/BookCartType";
 import { Trash2, X } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -17,8 +18,12 @@ import toast from "react-hot-toast";
 
 export function DeleteDialog({book}:{book:IBook}) {
   const handleDelete = async () => {
+    const token = await getTokenFromClient()
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}`,{
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     })
     if(res.ok){
       toast.success("Book deleted successfully");

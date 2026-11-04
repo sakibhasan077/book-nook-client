@@ -4,7 +4,8 @@ import type { FormEvent } from "react";
 import { LockKeyhole, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const categories = ["Fiction", "Non-fiction" , "Fantasy", "Science", "History", "Kids","Mystery", "Others"];
 const inputClass =
@@ -15,6 +16,7 @@ const labelClass =
 export default function AddBookPage() {
   const {data:session} = useSession();
   const user = session?.user;
+  // Handler Function
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -32,10 +34,13 @@ export default function AddBookPage() {
       createdAt: new Date().toISOString(),
     };
 
+    const token = await getTokenFromClient();
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data),
     });

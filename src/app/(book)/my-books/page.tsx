@@ -6,14 +6,20 @@ import { headers } from "next/headers";
 import { EditBookDetails } from "../_components/EditBook";
 import { DeleteDialog } from "../_components/DeleteBook";
 import { notFound } from "next/navigation";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const MyBooksPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const user = session?.user;
+  const token = await getTokenFromServer();
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/my-books/${user?.email}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/my-books/${user?.email}`,{
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
   );
   if (!res.ok) {
     notFound();

@@ -1,16 +1,23 @@
-"use client"
+"use client";
 
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBorrow } from "@/types/BookCartType";
-import {useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-const ReturnBookButton = ({borrow}:{borrow:IBorrow}) => {
-  const router = useRouter()
+const ReturnBookButton = ({ borrow }: { borrow: IBorrow }) => {
+  const router = useRouter();
   const handleReturn = async () => {
+    const token = await getTokenFromClient();
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/borrows/${borrow.bookId}`,
-        { method: "DELETE" },
+        {
+          method: "DELETE",
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        },
       );
       const data = await res.json().catch(() => null);
 
@@ -25,7 +32,7 @@ const ReturnBookButton = ({borrow}:{borrow:IBorrow}) => {
         error instanceof Error ? error.message : "Something went wrong",
       );
     }
-  }
+  };
   return (
     <button
       type="button"

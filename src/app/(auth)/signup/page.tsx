@@ -59,7 +59,7 @@ const validate = (values: FormValues): FormError => {
   if (!values.password) {
     errors.password = "Password is required";
   } else if (values.password.length < 6) {
-    errors.password = "Password must be at least 8 characters";
+    errors.password = "Password must be at least 6 characters";
   } else if (!/[A-Z]/.test(values.password)) {
     errors.password = "Password must contain an uppercase letter";
   }else if (!/[a-z]/.test(values.password)) {

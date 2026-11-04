@@ -14,6 +14,7 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSession } from "@/lib/auth-client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { IBook } from "@/types/BookCartType";
 import { BookOpen } from "lucide-react";
 import { redirect, useRouter } from "next/navigation";
@@ -38,6 +39,7 @@ export function ConfirmBorrowDialog({
   };
   const handleBorrow = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const token = await getTokenFromClient()
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/borrows`,
@@ -45,6 +47,7 @@ export function ConfirmBorrowDialog({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`
           },
           body: JSON.stringify(data),
         },
